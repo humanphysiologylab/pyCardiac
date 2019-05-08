@@ -1,3 +1,5 @@
-from .extract_baseline import *
-from .transform_to_phase import *
-from .normalize import *
+import filtration
+
+from .extract_baseline import extract_baseline
+from .transform_to_phase import transform_to_phase
+from .normalize import normalize

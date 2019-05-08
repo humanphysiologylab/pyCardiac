@@ -59,3 +59,14 @@ def phase_difference(a, b):
     
     else:
         return a - b + 2 * np.pi
+    
+
+def char_to_float(c, f_min = -100., f_max = 50.):
+
+    f = f_min + (f_max - f_min) * (c + 128.) / 255.
+    return f
+
+def float_to_char(f, f_min = -100., f_max = 50.):
+
+    c = -128. + 255. * (f - f_min) / (f_max - f_min)
+    return c

@@ -69,6 +69,6 @@ def phase_singularity_detection(phase_array):
                 i_list.append(i)
                 j_list.append(j)
                 
-    result = np.array([i_list, j_list]).reshape(len(i_list), 2)
+    result = np.array([i_list, j_list]).transpose()
                 
     return result
