@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def rescale(signal, v_min = 0., v_max = 1.):
     """Rescale signal to [v_min, v_max]."""
 
@@ -23,3 +24,38 @@ def moving_average(a, n = 3) :
     ret[n:] = ret[n:] - ret[:-n]
     return ret[n - 1:] / n
 
+
+def add_borders(matrix,
+                left_border_size,
+                right_border_size,
+                top_border_size,
+                bottom_border_size,
+                value = 0.):
+    """Adds borders with given sizes and filled with given value to matrix"""
+    
+    n, m = matrix.shape
+
+    A = np.full((n + top_border_size + bottom_border_size,
+                 m + left_border_size + right_border_size),
+                fill_value = value)
+
+    top = top_border_size
+    bottom = top_border_size + n
+    left = left_border_size
+    right = left_border_size + m
+
+    A[top : bottom, left : right] = matrix  
+
+    return A
+
+
+def phase_difference(a, b):
+    
+    if np.abs(a - b) <= np.pi:
+        return a - b
+    
+    elif (a - b) > 0:
+        return a - b - 2 * np.pi
+    
+    else:
+        return a - b + 2 * np.pi
