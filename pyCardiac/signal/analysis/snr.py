@@ -1,27 +1,24 @@
 import numpy as np
 
-def snr(a, b = None):
+def snr(signal_noisy, signal_clean = None):
     """
     Signal-to-noise ratio.
-    a - noisy signal
-    b - clean signal
+    signal_noisy - noisy signal
+    signal_noisy - clean signal (optional)
     """
     
-    if b is None:
+    if signal_clean is None:
         """
         This is old function from scipy.stats.
         """
-        m = a.mean(0)
-        sd = a.std(axis = 0, ddof = 0)
+        m = signal_noisy.mean(0)
+        sd = signal_noisy.std(axis = 0, ddof = 0)
         ratio = np.where(sd == 0, 0, m / sd)
     
     else:
-        e = a - b # noise
-        rms_b = np.sqrt(np.mean(b**2))
-        rms_e = np.sqrt(np.mean(e**2))
-        ratio = 20 * np.log10(rms_b / rms_e)
+        noise = signal_noisy - signal_clean
+        rms_signal_clean = np.sqrt(np.mean(signal_clean**2))
+        rms_noise = np.sqrt(np.mean(noise**2))
+        ratio = 20 * np.log10(rms_signal_clean / rms_noise)
 
     return ratio
-
-
-

@@ -13,6 +13,10 @@ def calculate_alternance(time, signal, percentage = 80., APD_min = 10.):
     index = index[0]
     spaces = time_copy[index[1:]] - time_copy[index[:-1]]
 
-    max_first = np.argmax(spaces > APD_min)
-    max_second = max_first + 1 + np.argmax(spaces[max_first + 1: ] > APD_min)
-    return spaces[max_first] - spaces[max_second]
+    try:
+        max_first = np.argmax(spaces > APD_min)
+        max_second = max_first + 1 + np.argmax(spaces[max_first + 1: ] > APD_min)
+        alternance_value = spaces[max_first] - spaces[max_second]
+    except:
+        alternance_value = np.NaN
+    return alternance_value

@@ -1,1 +1,2 @@
-from .norms import ssd, sd
+from .norms import ssd
+from .norms import sd

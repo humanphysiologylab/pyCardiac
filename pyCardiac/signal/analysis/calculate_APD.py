@@ -12,5 +12,8 @@ def calculate_APD(time, signal, percentage = 80.):
     index = np.nonzero(signal_copy < signal_copy.min() + (1. - percentage / 100.) * signal_copy.ptp())
     index = index[0]
     spaces = time_copy[index[1:]] - time_copy[index[:-1]]
-    APD = spaces.max()
+    if (len(spaces)):
+        APD = np.nanmax(spaces)
+    else:
+        APD = np.NaN
     return APD

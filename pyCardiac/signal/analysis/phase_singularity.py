@@ -1,5 +1,5 @@
 import numpy as np
-from ..routines import phase_difference
+from ...routines import phase_difference
 
 
 def phase_singularity_detection_lasso(phase_array, result, i_range = None, j_range = None):
@@ -37,12 +37,12 @@ def phase_singularity_detection_lasso(phase_array, result, i_range = None, j_ran
             result.append([x, y])
         
         elif (N >= M):
-            phase_singularity_detection(phase_array, result, (i_min, i_middle+1), (j_min, j_max))
-            phase_singularity_detection(phase_array, result, (i_middle-1, i_max), (j_min, j_max))
+            phase_singularity_detection_lasso(phase_array, result, (i_min, i_middle+1), (j_min, j_max))
+            phase_singularity_detection_lasso(phase_array, result, (i_middle-1, i_max), (j_min, j_max))
             
         elif (M > N):
-            phase_singularity_detection(phase_array, result, (i_min, i_max), (j_min, j_middle+1))
-            phase_singularity_detection(phase_array, result, (i_min, i_max), (j_middle-1, j_max))      
+            phase_singularity_detection_lasso(phase_array, result, (i_min, i_max), (j_min, j_middle+1))
+            phase_singularity_detection_lasso(phase_array, result, (i_min, i_max), (j_middle-1, j_max))      
     
     return number_of_ps
 
