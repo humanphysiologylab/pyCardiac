@@ -11,7 +11,7 @@ def ssd(a, b):
     """
     A = np.array(a)
     B = np.array(b)
-    return (A-B)@(A-B)
+    return np.sum((A-B)*(A-B))
 
 
 def sd(a,b):
@@ -21,6 +21,6 @@ def sd(a,b):
     """
     A = np.array(a)
     B = np.array(b)
-    summation = ((A-B)@(A-B))/A.size
+    summation = np.sum((A-B) * (A-B)) / A.size
     return np.sqrt(summation)
 

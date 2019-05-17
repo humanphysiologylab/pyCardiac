@@ -7,11 +7,12 @@ import numpy as np
 from ...metrics import sd
 
 def scalar_multiplications(a, b):
-    coefficients = np.array([0.,0.,0.,0.,0.])
-    coefficients[0] = a@b
+    a, b = map(np.array, (a, b))
+    coefficients = np.array([0., 0., 0., 0., 0.])
+    coefficients[0] = np.sum(a * b)
     coefficients[1] = sum(a)
     coefficients[2] = sum(b)
-    coefficients[3] = a@a
+    coefficients[3] = np.sum(a * a)
     coefficients[4] = sum(np.ones(len(a)))
     return coefficients
 
@@ -27,7 +28,7 @@ def autoscaling(signal_to_scale, signal_reference):
     """
     c = scalar_multiplications(signal_to_scale, signal_reference)
     
-    if c[1] == 0 or c[1]*c[1] - c[4]*c[3] == 0:
+    if c[1] == 0 or c[1] * c[1] - c[4] * c[3] == 0:
         alpha = 0
         beta = 0
     else:
