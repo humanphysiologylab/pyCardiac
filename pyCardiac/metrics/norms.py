@@ -1,7 +1,7 @@
 import numpy as np
 """
 Metrics below may be used to compare goodness of fit between Action Potentials via Genetic Algorithm.
-4.05.2019
+Date: 4.05.2019
 """
 
 def ssd(a, b):
@@ -11,7 +11,7 @@ def ssd(a, b):
     """
     A = np.array(a)
     B = np.array(b)
-    return float(np.sum((A-B)*(A-B)))
+    return (A-B)@(A-B)
 
 
 def sd(a,b):
@@ -21,6 +21,6 @@ def sd(a,b):
     """
     A = np.array(a)
     B = np.array(b)
-    summation = float(np.sum((A-B)*(A-B)))/A.size
+    summation = ((A-B)@(A-B))/A.size
     return np.sqrt(summation)
 
