@@ -5,3 +5,5 @@ from .transform_to_phase import transform_to_phase
 from .remove_baseline import remove_baseline
 from .fourier_filter import fourier_filter
 from .binning import binning
+from .ensemble_average import ensemble_average
+from .rescale import rescale
