@@ -9,7 +9,7 @@ def fourier_filter(data, Fs, *args):
     *arg is frequency range, could be:
         [n, m], where n < m: region to trim
         [n, m], where n >= m: region to delete        
-    *args are being applied sequantialy
+    *args are being applied sequentialy
         
     returns filtered signal
     """

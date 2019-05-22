@@ -11,10 +11,10 @@ def ssd(a, b):
     """
     A = np.array(a)
     B = np.array(b)
-    return np.sum((A-B)*(A-B))
+    return np.sum((A-B) * (A-B))
 
 
-def sd(a,b):
+def sd(a, b):
     """
     Standard deviation (SD) implementation.
     a, b - arrays with the same length

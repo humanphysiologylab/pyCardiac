@@ -1,8 +1,22 @@
 import numpy as np
 
-
-def rescale(signal, v_min = 0., v_max = 1.):
-    """Rescale signal to [v_min, v_max]."""
+def rescale(signal, v_min: float = 0., v_max: float = 1.) -> np.ndarray:
+    """Rescale ``signal`` to [``v_min``, ``v_max``].
+    
+    Parameters
+    ----------
+    ``signal`` : array-like object
+        signal to rescale
+    ``v_min`` : float, optional
+        value minimum (default is 0)
+    ``v_max`` : float, optional
+        value maximum (default is 1)
+        
+    Returns
+    -------
+    numpy.ndarray, shape=(X)
+        rescaled signal
+    """
 
     # rescaling to [0, 1]
     result = np.array(signal, dtype = float)
@@ -17,21 +31,60 @@ def rescale(signal, v_min = 0., v_max = 1.):
     return result
     
 
-def moving_average(a, n = 3) :
-    """Source: https://stackoverflow.com/a/14314054"""
+def moving_average(signal: np.ndarray, n: int = 3) -> np.ndarray:
+    """Moving average of the signal with given window size.
+    Source: https://stackoverflow.com/a/14314054
+    
+    Parameters
+    ----------
+    ``signal``: numpy.ndarray, shape=(X)
+        signal to average
+    ``n``: int, optional
+        window size (default is 3)
+    
+    Returns
+    -------
+    numpy.ndarray, shape=(X - (n - 1))
+    """
 
-    ret = np.cumsum(a, dtype = float)
-    ret[n:] = ret[n:] - ret[:-n]
-    return ret[n - 1:] / n
+    signal_ = np.cumsum(signal, dtype = float)
+    signal_[n:] = signal_[n:] - signal_[:-n]
+    signal_averaged = signal_[n - 1:] / n
+    return signal_averaged
 
 
-def add_borders(matrix,
-                left_border_size,
-                right_border_size,
-                top_border_size,
-                bottom_border_size,
-                value = 0.):
-    """Adds borders with given sizes and filled with given value to matrix"""
+def add_borders(matrix: np.ndarray,
+                left_border_size: int,
+                right_border_size: int,
+                top_border_size: int,
+                bottom_border_size: int,
+                value: float = 0.) -> np.ndarray:
+    """Adds borders with given sizes and filled with given ``value`` to ``matrix``.
+    
+    Parameters
+    ----------
+    ``matrix`` : numpy.ndarray, shape=(N, M)
+        square matrix
+    ``left_border_size`` : int
+        size fo the left border to add
+    ``right_border_size`` : int
+        size fo the right border to add
+    ``top_border_size`` : int
+        size fo the top border to add
+    ``bottom_border_size`` : int
+        size fo the bottom border to add
+    ``value`` : float, optional
+        value to fill added borders (default is 0)
+        
+    Returns
+    -------
+    numpy.ndarray, shape=(X, Y)
+        matrix with new borders
+    """
+    
+    if (len(matrix.shape) != 2):
+        msg = "matrix must be square"
+        raise Exception(msg)
     
     n, m = matrix.shape
 
@@ -49,7 +102,19 @@ def add_borders(matrix,
     return A
 
 
-def phase_difference(a, b):
+def phase_difference(a: float, b: float) -> float:
+    """Calculating phase difference of two values.
+    
+    Parameters
+    ----------
+    ``a`` : float
+    ``b`` : float
+    
+    Returns
+    -------
+    float
+        phase difference
+    """
     
     if np.abs(a - b) <= np.pi:
         return a - b
@@ -61,12 +126,44 @@ def phase_difference(a, b):
         return a - b + 2 * np.pi
     
 
-def char_to_float(c, f_min = -100., f_max = 50.):
-
+def char_to_float(c: int, f_min: float = -100., f_max: float = 50.) -> float:
+    """Translates char number ``c`` from -128 to 127 to float from ``f_min`` to ``f_max``.
+    
+    Parameters
+    ----------
+    ``c`` : int
+        value to translate
+    ``f_min`` : float, optional
+        (default is -100)
+    ``f_max`` : float, optional
+        (default is 50)
+        
+    Returns
+    -------
+    float
+    """
+    
     f = f_min + (f_max - f_min) * (c + 128.) / 255.
     return f
 
-def float_to_char(f, f_min = -100., f_max = 50.):
 
+def float_to_char(f: float, f_min: float = -100., f_max: float = 50.) -> int:
+    """Translates float number ``f`` from ``f_min`` to ``f_max`` to char from -128 to 127.
+    
+    Parameters
+    ----------
+    ``f`` : float
+        value to translate
+    ``f_min`` : float, optional
+        (default is -100)
+    ``f_max`` : float, optional
+        (default is 50)
+        
+    Returns
+    -------
+    int
+    """
+    
     c = -128. + 255. * (f - f_min) / (f_max - f_min)
+    c = int(c)
     return c

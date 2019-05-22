@@ -13,7 +13,7 @@ def phase_singularity_detection_lasso(phase_array, result, i_range = None, j_ran
         
     i_min, i_max = i_range
     j_min, j_max = j_range
-    i_middle, j_middle = (i_max + i_min) / 2, (j_max + j_min) / 2
+    i_middle, j_middle = (i_max + i_min) // 2, (j_max + j_min) // 2
     
     N, M = i_max - i_min, j_max - j_min # phase shape 
     
