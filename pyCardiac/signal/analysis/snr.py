@@ -2,15 +2,26 @@ import numpy as np
 
 def snr(signal_noisy, signal_clean = None):
     """
-    Signal-to-noise ratio.
+    .
     signal_noisy - noisy signal
     signal_noisy - clean signal (optional)
     """
+    """ Signal-to-noise ratio (SNR) calculation.
+            
+        Parameters
+        ----------
+        ``signal_noisy`` : array-like object
+            noisy signal
+        ``signal_clean`` : array-like object
+            clean signal, optional (default is None)
+            
+        Returns
+        -------
+        float
+            SNR value
+    """
     
     if signal_clean is None:
-        """
-        This is old function from scipy.stats.
-        """
         m = signal_noisy.mean(0)
         sd = signal_noisy.std(axis = 0, ddof = 0)
         ratio = np.where(sd == 0, 0, m / sd)

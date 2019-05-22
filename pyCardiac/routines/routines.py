@@ -167,3 +167,26 @@ def float_to_char(f: float, f_min: float = -100., f_max: float = 50.) -> int:
     c = -128. + 255. * (f - f_min) / (f_max - f_min)
     c = int(c)
     return c
+
+def scalar_multiplications(a, b):
+    """ Scalar multiplications calculations (for autoscaling.py).
+    Parameters
+    ----------
+    ``a`` : array-like object
+    signal to scale
+    ``b`` : array-like object
+    reference signal
+        
+    Returns
+    -------
+    numpy.ndarray, shape=(5)
+    """
+    a, b = map(np.array, (a, b))
+    coefficients = np.array([0., 0., 0., 0., 0.])
+    coefficients[0] = np.sum(a * b)
+    coefficients[1] = sum(a)
+    coefficients[2] = sum(b)
+    coefficients[3] = np.sum(a * a)
+    coefficients[4] = sum(np.ones(len(a)))
+    return coefficients
+

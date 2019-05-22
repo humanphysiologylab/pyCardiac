@@ -1,20 +1,6 @@
-""" 
-Autoscaling technique implementation. 
-Based on the method of least squares (link: https://en.wikipedia.org/wiki/Least_squares)
-Date: 17.05.2019
-"""
 import numpy as np
 from ...metrics import sd
-
-def scalar_multiplications(a, b):
-    a, b = map(np.array, (a, b))
-    coefficients = np.array([0., 0., 0., 0., 0.])
-    coefficients[0] = np.sum(a * b)
-    coefficients[1] = sum(a)
-    coefficients[2] = sum(b)
-    coefficients[3] = np.sum(a * a)
-    coefficients[4] = sum(np.ones(len(a)))
-    return coefficients
+from ...routines import scalar_multiplications
 
 def autoscaling(signal_to_scale, signal_reference):
     """
@@ -26,14 +12,34 @@ def autoscaling(signal_to_scale, signal_reference):
         'signal_scaled'  - scaled signal, 1d array.
         variance - standart distance (error between two signals)
     """
+        
+
+    """ Autoscaling technique implementation.
+        Based on the method of least squares (link: https://en.wikipedia.org/wiki/Least_squares)
+        Parameters
+        ----------
+        ``signal_to_scale`` : array-like object, shape=(X)
+        signal we want to scale
+        ``signal_reference`` : array-like object, shape=(X)
+        target signal
+        
+        Returns
+        -------
+        numpy.ndarray, shape=(X)
+            scaled signal
+        float
+            standart distance (error between two signals)
+        
+    """
+    
     c = scalar_multiplications(signal_to_scale, signal_reference)
     
     if c[1] == 0 or c[1] * c[1] - c[4] * c[3] == 0:
         alpha = 0
         beta = 0
     else:
-        beta = (c[0]*c[1] - c[2]*c[3])/(c[1]*c[1] - c[4]*c[3])
-        alpha = (c[2] - beta*c[4])/c[1]
+        beta = (c[0] * c[1] - c[2] * c[3])/(c[1] * c[1] - c[4] * c[3])
+        alpha = (c[2] - beta * c[4])/ c[1]
     
     signal_scaled = signal_to_scale * alpha + beta
     variance = sd(signal_scaled, signal_reference)

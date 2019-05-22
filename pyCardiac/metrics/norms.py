@@ -1,26 +1,47 @@
-import numpy as np
 """
 Metrics below may be used to compare goodness of fit between Action Potentials via Genetic Algorithm.
-Date: 4.05.2019
 """
 
+import numpy as np
+
 def ssd(a, b):
-    """
-    Sum Of Squared Differences (SSD) implementation.
-    a, b - arrays with the same length
+    """ Sum Of Squared Differences (SSD) calculation.
+        
+        Parameters
+        ----------
+        ``a`` : array-like object
+            first signal
+        ``b`` : array-like object
+            second signal
+        
+        Returns
+        -------
+        float
+            SSD value
     """
     A = np.array(a)
     B = np.array(b)
-    return np.sum((A-B) * (A-B))
+    return np.sum((A - B) * (A - B))
 
 
 def sd(a, b):
+    """ Standard deviation (SD) calculation.
+            
+        Parameters
+        ----------
+        ``a`` : array-like object
+            first signal
+        ``b`` : array-like object
+            second signal
+            
+        Returns
+        -------
+        float
+            SD value
     """
-    Standard deviation (SD) implementation.
-    a, b - arrays with the same length
-    """
+    
     A = np.array(a)
     B = np.array(b)
-    summation = np.sum((A-B) * (A-B)) / A.size
+    summation = np.sum((A - B) * (A - B)) / A.size
     return np.sqrt(summation)
 
