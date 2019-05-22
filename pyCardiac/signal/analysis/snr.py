@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def snr(signal_noisy, signal_clean = None):
     """
     .

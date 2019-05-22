@@ -1,3 +1,14 @@
+"""
+Basic toolkits to process Action Potential signals
+==================================================
+
+metrics
+rhythm
+routines
+signal
+"""
+
+
 __all__ = ['metrics',
            'rhythm',
            'routines',

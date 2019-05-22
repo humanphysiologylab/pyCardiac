@@ -4,26 +4,61 @@ from scipy.sparse.linalg import spsolve
 from scipy.signal import detrend as detrend
 
 
-def remove_baseline(signal, method_name = "linear", **kwargs):
+def remove_baseline(data: np.ndarray, method_name: str = "linear", **kwargs) -> np.ndarray:
+    """Remove baseline from the ``data`` with given method along last axis.
+    
+    Parameters
+    ----------
+    ``data`` : np.ndarray, shape=(N)
+    ``method_name`` : str, optional
+        could be 'linear' or 'least_squares' (default is 'least_squares')
+    ``**kwargs``
+        arbitrary keyword arguments
+    
+    Returns
+    -------
+    np.ndarray, shape=(N)
+        ``data`` without baseline  
+    """
     
     if (method_name == "linear"):
-        signal_detrended = detrend(signal, **kwargs)
+        signal_detrended = np.apply_along_axis(detrend, -1, data, **kwargs)
     elif (method_name == "least_squares"):
-        trend = baseline_als(signal, **kwargs)
-        signal_detrended = signal - trend
+        trend = np.apply_along_axis(baseline_als, -1, data, **kwargs)
+        signal_detrended = data - trend
     else:
         raise Exception("method_name may be 'linear' or 'least_squares' but {} given".format(method_name))
     
     return signal_detrended
     
 
-def baseline_als(signal, lam = 1e6, p = 0.01, niter = 10):    
+def baseline_als(signal: np.ndarray, lam: float = 1e6,
+                 p: float = 0.01, niter: int = 10) -> np.ndarray:    
     """
-    returns baseline of the signal
+    Extract baseline of the ``signal``.
     
+    Parameters
+    ----------
+    ``signal`` : np.ndarray, shape=(N)
+    ``lam`` : float, optional
+        smoothness parameter (default is 1e6)
+    ``p`` : float, optional
+        asymmetry parameter (default is 0.01)
+    ``niter``: int, optional
+        number of iterations (default is 10)
+        
+    Returns
+    -------
+    np.ndarray, shape=(N)
+        baseline of the ``signal``
+        
+    References
+    ----------
     Baseline Correction with Asymmetric Least Squares Smoothing
     Paul H. C. EilersHans F.M. Boelens, October 21, 2005
 
+    Note
+    ----
     Explanation from the article:
         There are two parameters: p for asymmetry and lam for smoothness.
         Both have to be tuned to the data at hand.
@@ -32,6 +67,7 @@ def baseline_als(signal, lam = 1e6, p = 0.01, niter = 10):
         In any case one should vary lam on a grid that is approximately linear for log(lam).
         Often visual inspection is sufficient to get good parameter values.
     """
+    
     L = len(signal)
     D = sparse.diags([1, -2, 1],
                      [0, -1, -2],

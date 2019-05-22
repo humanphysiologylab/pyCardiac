@@ -2,8 +2,26 @@ import numpy as np
 from ...routines import phase_difference
 
 
-def phase_singularity_detection_lasso(phase_array, result, i_range = None, j_range = None):
+def phase_singularity_detection_lasso(phase_array: np.ndarray, result: list,
+                                      i_range: tuple = None, j_range: tuple = None):
+    """Detects phase singularity points (PS) in ``phase_array`` with lasso method.
     
+    Parameters
+    ----------
+    ``phase_array``: np.ndarray, shape=(X, Y)
+    ``result`` : list
+        list to append coordinates of PS
+    ``i_range`` : tuple, optional
+        range along first axis to process ``phase_array``
+    ``j_range`` : tuple, optional
+        range along seconf axis to process ``phase_array``
+      
+    Returns
+    -------
+    None
+        use ``result`` to return PS coordinates 
+    """
+        
     if type(result) is not list:
         raise Exception("Invalid value of the argument: <result> must be a list!")
         
@@ -47,7 +65,18 @@ def phase_singularity_detection_lasso(phase_array, result, i_range = None, j_ran
     return number_of_ps
 
 
-def phase_singularity_detection(phase_array):
+def phase_singularity_detection(phase_array: np.ndarray) -> np.ndarray:
+    """Detects phase singularity points (PS) in ``phase_array``.
+    
+    Parameters
+    ----------
+    ``phase_array``: np.ndarray, shape=(X, Y)
+    
+    Returns
+    -------
+    np.ndarray, shape=(N, 2)
+        x and y coordinates of PS 
+    """
     
     i_list, j_list = [], []
     

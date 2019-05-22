@@ -1,7 +1,23 @@
 import numpy as np
 
-def calculate_alternance(time, signal, percentage = 80., APD_min = 10.):
-    """Calculate Action Potential alternance for "percentage" level repolarization."""
+
+def calculate_alternance(time: np.ndarray, signal: np.ndarray, percentage: float = 80., APD_min: float = 10.) -> float:
+    """Calculate alternance of Action Potential for ``percentage`` level repolarization of the ``signal``.
+    
+    Parameters
+    ----------
+    ``time`` : np.ndarray, shape=(T)
+    ``signal`` : np.ndarray, shape=(T)
+    ``percentage`` : float, optional
+        level of signal to calculate duration (default is 80)
+    ``APD_min`` : float, optional
+        min action potential duration expected (default is 10)
+        
+    Returns
+    -------
+    float or np.NaN
+        alternance in time units of ``time``
+    """
 
     time_copy, signal_copy = map(np.array, (time, signal))
 

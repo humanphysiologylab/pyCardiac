@@ -5,7 +5,7 @@ def rescale(signal, v_min: float = 0., v_max: float = 1.) -> np.ndarray:
     
     Parameters
     ----------
-    ``signal`` : array-like object
+    ``signal`` : array-like object, shape=(X)
         signal to rescale
     ``v_min`` : float, optional
         value minimum (default is 0)
@@ -15,7 +15,7 @@ def rescale(signal, v_min: float = 0., v_max: float = 1.) -> np.ndarray:
     Returns
     -------
     numpy.ndarray, shape=(X)
-        rescaled signal
+        rescaled ``signal``
     """
 
     # rescaling to [0, 1]

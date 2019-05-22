@@ -1,3 +1,16 @@
+"""
+Toolkits for analysis of generic signals of Action Potential
+============================================================
+
+calculate_APD
+calculate_alternance
+calculate_activation_time
+snr
+phase_singularity_detection
+phase_singularity_detection_lasso
+"""
+
+
 __all__ = ['calculate_APD',
            'calculate_alternance',
            'calculate_activation_time',

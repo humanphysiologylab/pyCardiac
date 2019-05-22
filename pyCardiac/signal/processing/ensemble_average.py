@@ -1,23 +1,32 @@
 import numpy as np
 
 
-def ensemble_average(time, signal, cycle_length):
+def ensemble_average(time: np.ndarray, signal: np.ndarray, cycle_length: float) -> np.ndarray:
+    """Ensemble average of ``signal``.
     
-    """
-    returns time space and averaged signal
+    Parameters
+    ``time`` : np.ndarray, shape=(T)
+    ``signal``: np.ndarray, shape=(T)
+    ``cycle_length`` : int
+        averaging interval
+        
+    Returns
+    -------
+    np.ndarray, shape=(``cycle_length``)
     
-    Ex.:
-        >>> time = np.linspace(0, 100, 1000)
-        >>> cycle_length = 15.
-        >>> signal = np.sin(time / (cycle_length / (2 * np.pi)))
-        >>> noise = 0.2 * np.sin(time / 0.42)
-        >>> signal_noisy = signal + noise
-        >>> plt.plot(time, signal_noisy)
-        >>> plt.show()
+    Example
+    -------
+    >>> time = np.linspace(0, 100, 1000)
+    >>> cycle_length = 15.
+    >>> signal = np.sin(time / (cycle_length / (2 * np.pi)))
+    >>> noise = 0.2 * np.sin(time / 0.42)
+    >>> signal_noisy = signal + noise
+    >>> plt.plot(time, signal_noisy)
+    >>> plt.show()
 
-        >>> time_space, signal_averaged = ensemble_average(time, signal_noisy, cycle_length)
-        >>> plt.plot(time_space, signal_averaged)
-        >>> plt.show()
+    >>> time_space, signal_averaged = ensemble_average(time, signal_noisy, cycle_length)
+    >>> plt.plot(time_space, signal_averaged)
+    >>> plt.show()
     """
     
     time, signal = map(np.array, (time, signal))

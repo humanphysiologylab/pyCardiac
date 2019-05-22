@@ -1,7 +1,28 @@
 import numpy as np
 from ....routines import kernel_gaussian, add_borders
 
-def binning(data, kernel_size = 3, kernel_name = 'uniform', mask = None):
+
+def binning(data: np.ndarray, kernel_size: int = 3, kernel_name: str = 'uniform', mask: np.ndarray = None) -> np.ndarray:
+    
+    """Binning of ``data`` with given kernel and ``mask``.
+    
+    Parameters
+    ----------
+    ``data`` : np.ndarray, shape=(X, Y) or (X, Y, T)
+        data to apply binning
+    ``kernel_size`` : int, optional
+        (default is 3)
+    ``kernel_name`` : str, optional
+        could be 'uniform' or 'gaussian' (default is gaussian)
+    ``mask`` : np.ndarray, optional
+        mask for data, shape=(X, Y)
+        (default is None)
+        
+    Returns
+    -------
+    np.ndarray, shape of ``data``
+        ``data`` binned
+    """
     
     if kernel_name == 'uniform':
             kernel = np.ones((kernel_size, kernel_size)) / kernel_size**2
@@ -18,13 +39,18 @@ def binning(data, kernel_size = 3, kernel_name = 'uniform', mask = None):
         msg = "data must have 2 or 3 dimentions but it has {}".format(len(data.shape))
         raise Exception(msg)
 
+    N, M, T = data_.shape
+            
     if mask is None:
         mask = np.ones_like(data_[:, :, 0])
+    elif (mask.shape[0] != N) or (mask.shape[1] != M):
+        msg = "mask must have shape ({0}, {1}) but has ({2}, {3})".format(N, M, mask.shape[0], mask.shape[1])
+        raise Exception(msg)
 
     data_binned = np.zeros(data_.shape)
 
     kernel_size_half = kernel_size // 2
-    N, M, T = data_.shape
+
     
     for y in range(N):
         for x in range(M):

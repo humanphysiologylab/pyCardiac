@@ -2,18 +2,8 @@ import numpy as np
 from ...metrics import sd
 from ...routines import scalar_multiplications
 
-def autoscaling(signal_to_scale, signal_reference):
-    """
-    Input:
-        'signal_to_scale' - signal we want to scale.
-        'signal_reference' - target signal.
-        Both are 1D numpy arrays same length.
-    Output:
-        'signal_scaled'  - scaled signal, 1d array.
-        variance - standart distance (error between two signals)
-    """
-        
 
+def autoscaling(signal_to_scale, signal_reference):
     """ Autoscaling technique implementation.
         Based on the method of least squares (link: https://en.wikipedia.org/wiki/Least_squares)
         Parameters

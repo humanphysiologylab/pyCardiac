@@ -1,3 +1,16 @@
+"""
+Signal processing before analysis
+=================================
+
+filtration (module)
+remove_baseline
+baseline_als
+transform_to_phase
+normalize
+autoscaling
+ensemble_average
+"""
+
 __all__ = ['filtration', 
            
            'remove_baseline',

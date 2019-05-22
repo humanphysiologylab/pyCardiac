@@ -2,16 +2,26 @@ import numpy as np
 from scipy.fftpack import rfft, irfft, fftfreq
 
 
-def fourier_filter(data, Fs, *args):
-    """
-    data - 1D array
-    Fs - sampling frequency
-    *arg is frequency range, could be:
-        [n, m], where n < m: region to trim
-        [n, m], where n >= m: region to delete        
-    *args are being applied sequentialy
+def fourier_filter(data: np.ndarray, Fs: float, *args) -> np.ndarray:
+    """FFT filter of data.
+    
+    Parameters
+    ----------
+    ``data`` : np.ndarray, shape=(N)
+        signal to filter
+    ``Fs`` : float
+        sampling frequency
+    ``*args``
+        variable length argument list.
+        of frequency ranges, could be:
+            [n, m], where n < m: region to trim
+            [n, m], where n >= m: region to delete        
+        *args are being applied sequentialy
         
-    returns filtered signal
+    Returns
+    -------
+    np.ndarray, shape=(N)
+        filtered data
     """
     
     n = len(data)

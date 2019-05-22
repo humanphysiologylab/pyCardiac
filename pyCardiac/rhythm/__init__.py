@@ -1,3 +1,19 @@
+"""
+Toolkits for 3D-array (X, Y, T) analysis and processing
+==========================================================
+
+calculate_APD_map
+calculate_alternance_map
+calculate_activation_map
+calculate_CV_map
+transform_to_phase
+remove_baseline
+fourier_filter
+binning
+ensemble_average
+rescale
+"""
+
 __all__ = ['calculate_APD_map',
            'calculate_alternance_map',
            'calculate_activation_map',
