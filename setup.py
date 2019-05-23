@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setup(name='pyCardiac',
-      version='0.1',
+      version='1.0',
       url='https://github.com/humanphysiologylab/pyCardiac',
       author='Human Physiology Lab',
       author_email='dmitrii.smirnov@phystech.edu',
