@@ -13,21 +13,22 @@ pip install pyCardiac
 
 Please see [examples](./examples) directory in current repository.
 
-_For more explanation, please refer to the [Wiki][wiki]._
+_For more explanations, please refer to the [Wiki][wiki]._
 
 
 ## Release History
 
-* 0.9
+* 1.0
     * ADD: Examples and documentation
+    * ADD: All basic functionality
 
 ## Meta
 
-Dmitry Smirnov – dmitrii.smirnov@phystech.edu
+Dmitrii Smirnov – dmitrii.smirnov@phystech.edu
 
 Andrey Pikunov – pikunov@phystech.edu
 
-Distributed under the MIT license. See ``LICENSE`` for more information.
+Distributed under the MIT license. See [LICENSE](./LICENSE) for more information.
 
 ## Contributing
 
