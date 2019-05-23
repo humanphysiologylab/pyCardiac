@@ -1,35 +1,33 @@
 # pyCardiac
-> Action Potentials signals processing and analysis.
+> Action Potential signals processing and analysis.
 
 ## Installation
 
 OS X & Linux:
 
 ```sh
-pip install .
+pip install pyCardiac
 ```
 
 ## Usage example
 
-_For more examples and usage, please refer to the [Wiki][wiki]._
+Please see [examples](./examples) directory in current repository.
 
-## Development setup
+_For more explanation, please refer to the [Wiki][wiki]._
 
-```sh
-make install
-npm test
-```
 
 ## Release History
+
+* 0.9
+    * ADD: Examples and documentation
 
 ## Meta
 
 Dmitry Smirnov – dmitrii.smirnov@phystech.edu
+
 Andrey Pikunov – pikunov@phystech.edu
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
-
-https://github.com/cosmoskaluga
 
 ## Contributing
 
@@ -38,9 +36,11 @@ https://github.com/cosmoskaluga
 3. Commit your changes (`git commit -am 'Add some fooBar'`)
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
-_____________________________
 
-This file created from [here](https://dbader.org/blog/write-a-great-readme-for-your-github-project)
+---
+
+This file created from [here][readme_template]
 
 <!-- Markdown link & img dfn's -->
 [wiki]: https://github.com/humanphysiologylab/pyCardiac/wiki
+[readme_template]: https://dbader.org/blog/write-a-great-readme-for-your-github-project

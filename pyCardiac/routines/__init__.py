@@ -20,7 +20,7 @@ __all__ = ['rescale',
            'phase_difference',
            'char_to_float',
            'float_to_char',
-           'scalar_multiplications'
+           'scalar_multiplications',
            'kernel_gaussian',
            'awgn']
 
