@@ -1,4 +1,5 @@
 # pyCardiac
+<a href="https://pypi.org/project/pyCardiac/" alt="PyPI"><img src="https://img.shields.io/badge/PyPi-v1.0-blue.svg"></a>
 > Action Potential signals processing and analysis.
 
 ## Installation
