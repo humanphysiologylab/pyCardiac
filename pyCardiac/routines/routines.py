@@ -1,7 +1,9 @@
 import numpy as np
 
+
 def rescale(signal, v_min: float = 0., v_max: float = 1.) -> np.ndarray:
     """Rescale ``signal`` to [``v_min``, ``v_max``].
+    In case of ``signal`` filled with only one value result will be an array filled with v_min.
     
     Parameters
     ----------
@@ -21,7 +23,9 @@ def rescale(signal, v_min: float = 0., v_max: float = 1.) -> np.ndarray:
     # rescaling to [0, 1]
     result = np.array(signal, dtype = float)
     result -= np.nanmin(result)
-    result /= np.nanmax(result)
+    max_ = np.nanmax(result)
+    if max_ != 0:
+        result /= max_
 
     # rescaling to [v_min, v_max] 
     v_ptp = v_max - v_min

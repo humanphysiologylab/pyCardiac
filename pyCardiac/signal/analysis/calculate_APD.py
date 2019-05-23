@@ -19,9 +19,9 @@ def calculate_APD(time, signal, percentage = 80.):
     
     time_copy, signal_copy = map(np.array, (time, signal))
 
-    assert(0 < percentage < 100)
-    assert(len(time_copy.shape) == len(signal_copy.shape))
-    assert(time_copy.shape == signal_copy.shape)
+    if not (0 < percentage < 100):
+        msg = "percentage must be in range (0, 100) but {} was given".format(percentage)
+        raise Exception(msg)
 
     index = np.nonzero(signal_copy < signal_copy.min() + (1. - percentage / 100.) * signal_copy.ptp())
     index = index[0]

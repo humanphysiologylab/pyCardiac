@@ -19,7 +19,10 @@ _For more explanations, please refer to the [Wiki][wiki]._
 
 ## Release History
 
-* 1.0
+* 1.0.1
+    * CHANGE: fourier_filter()
+    * ADD: calculate_APD() and rescale() exceptions handling
+* 1.0.0
     * ADD: Examples and documentation
     * ADD: All basic functionality
 
