@@ -2,11 +2,6 @@ import numpy as np
 
 
 def snr(signal_noisy, signal_clean = None):
-    """
-    .
-    signal_noisy - noisy signal
-    signal_noisy - clean signal (optional)
-    """
     """ Signal-to-noise ratio (SNR) calculation.
             
         Parameters

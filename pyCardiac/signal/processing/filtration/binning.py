@@ -94,4 +94,7 @@ def binning(data: np.ndarray, kernel_size: int = 3, kernel_name: str = 'uniform'
                 temp = np.rollaxis(data_windows, 2) * kernel_current
                 data_binned[y, x, :] = np.sum(temp, axis = (1, 2))           
 
-    return data_binned
+    if len(data.shape) == 2:
+        return data_binned[:, :, 0]
+    elif len(data.shape) == 3:
+        return data_binned

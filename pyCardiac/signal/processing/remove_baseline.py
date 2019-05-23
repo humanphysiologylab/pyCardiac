@@ -35,7 +35,7 @@ def remove_baseline(data: np.ndarray, method_name: str = "linear", **kwargs) -> 
 def baseline_als(signal: np.ndarray, lam: float = 1e6,
                  p: float = 0.01, niter: int = 10) -> np.ndarray:    
     """
-    Extract baseline of the ``signal``.
+    Extract baseline from the ``signal``.
     
     Parameters
     ----------

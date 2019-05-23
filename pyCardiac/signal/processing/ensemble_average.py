@@ -35,9 +35,10 @@ def ensemble_average(time: np.ndarray, signal: np.ndarray, cycle_length: float) 
     if L != len(time):
         msg = "time and signal must be the same length but {0} and {1} are given".format(len(time), len(signal))
         raise Exception(msg)
-    
-    n = int(time[-1] / cycle_length)     # number of whole cycles
-    m = int(cycle_length * L / time[-1]) # number of points in cycle
+
+    time_ptp = time.ptp()
+    n = int(time_ptp / cycle_length)     # number of whole cycles
+    m = int(L * cycle_length / time_ptp) # number of points in cycle
     
     signal_cut = signal[: (n * m)]
     

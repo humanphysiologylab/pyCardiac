@@ -26,7 +26,7 @@ def rescale(signal, v_min: float = 0., v_max: float = 1.) -> np.ndarray:
     # rescaling to [v_min, v_max] 
     v_ptp = v_max - v_min
     result *= v_ptp
-    result -= v_min
+    result += v_min
 
     return result
     
